@@ -59,18 +59,57 @@
   gap: 16px;
 }
 
-.library-card {
+.library-card,
+.modal {
   background-color: var(--ctrst-color);
   width: 100%;
   border-radius: 16px;
   padding: 16px;
+  font-size: .75rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.modal {
+  justify-content: space-around;
+}
+
+.book-input-wrapper {
+  list-style-type: none;
+
+}
+
+.form-row {
+  padding: 8px;
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.form-row > label {
+  flex: 1;
+}
+
+.form-row > input {
+  padding: 4px;
+  flex: 2;
+  border: none;
+  border-radius: 8px;
+  font-size: .75rem;
 }
 
 #book-img {
   height: 32px;
   fill: var(--text-color);
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .add-book {
@@ -83,7 +122,6 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-
 }
 
 .add-book:hover {
@@ -100,6 +138,11 @@
   fill: var(--alt-text-color);
 }
 
+input {
+  border: none;
+
+}
+
 .footer {
   height: 5%;
   width: 100%;
@@ -113,15 +156,25 @@
 }
 
 button {
+  background: white;
   border: none;
   border-radius: 15%;
   font-size: .6rem;
+  padding: 16px;
 }
 
-/* button .read {
-  background-color: green;
-} */
+button:hover {
+  background-color: var(--alt-bg-color);
+}
+
+.read {
+  background-color: rgb(92, 190, 92);
+}
+
+.unread {
+  background-color: rgb(243, 172, 78);
+}
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
