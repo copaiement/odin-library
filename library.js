@@ -2,7 +2,11 @@
 
 // event listener for add book
 const addBookBtn = document.querySelector('.add-book');
-addBookBtn.addEventListener('click', openModal());
+addBookBtn.addEventListener('click', openModal);
+
+// event listener for submit button
+const submitBtn = document.querySelector('#submit-btn');
+submitBtn.addEventListener('click', submit);
 
 let myLibrary = [];
 
@@ -15,21 +19,26 @@ function Book(title, author, pages) {
 }
 
 function openModal() {
-  const addButton = document.querySelector('.add-book');
-  const modal = document.querySelector('.modal');
-  
-  modal.classList.remove('hidden');
-  addButton.classList.add('hidden')
+  document.querySelector('.add-book').classList.add('hidden');
+  document.querySelector('.modal').classList.remove('hidden');
 }
 
-function addBookToLibrary() {
-  console.log('test');
+function submit(event) {
+  event.preventDefault();
+  getBookInfo();
+}
+
+function getBookInfo() {
   const title = document.querySelector('#title-input').value;
   const author = document.querySelector('#author-input').value;
   const pages = document.querySelector('#pages-input').value;
 
   const newBook = new Book(title, author, pages);
   myLibrary[myLibrary.length - 1] = newBook;
+
+  // hide modal and show button
+  document.querySelector('.add-book').classList.remove('hidden');
+  document.querySelector('.modal').classList.add('hidden');
 }
 
 function setStatus() {
