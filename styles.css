@@ -10,8 +10,9 @@
   --alt-bg-color: rgb(155, 117, 117);
   --hover-bg: rgb(71, 43, 43);
   --alt-color: rgb(80, 52, 19);
+  --header-text: rgb(0, 0, 0);
   --text-color: rgb(0, 0, 0);
-  --text-contrast: rgb(53, 33, 61);
+  --text-contrast: rgb(72, 64, 75);
   --alt-text-color: rgb(201, 201, 201);
 
 }
@@ -40,7 +41,7 @@
   height: 10%;
   width: 100%;
   background-color: var(--alt-bg-color);
-  color: var(--text-contrast);
+  color: var(--header-text);
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
@@ -71,6 +72,11 @@
   align-items: center;
 }
 
+.author {
+  font-size: .6rem;
+  color: var(--text-contrast);
+}
+
 .modal {
   justify-content: space-around;
 }
@@ -83,6 +89,12 @@
 .book-input-wrapper {
   list-style-type: none;
 
+}
+
+#status-btn,
+.remove {
+  width: 80px;
+  padding: 8px;
 }
 
 .form-row {

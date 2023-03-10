@@ -32,15 +32,13 @@ function submit(event) {
   const form3 = document.querySelector('#pages-input').reportValidity();
   if (form1 && form2 && form3) {
     event.preventDefault();
+    // add error checking to see if book already exists??
     closeModal();
     addBook();
   }
 }
 
-// These change only the first button. Figure this out.
 function setStatus(element) {
-  console.log(element);
-  
   if (element.getAttribute('class') === 'read') {
     element.classList.remove('read');
     element.classList.add('unread');
@@ -50,27 +48,20 @@ function setStatus(element) {
     element.classList.add('read');
     element.innerHTML = 'Read';
   }
-
-  // const status = document.querySelector('#status-btn');
-  // if (status.getAttribute('class') === 'read') {
-  //   status.classList.remove('read');
-  //   status.classList.add('unread');
-  //   status.innerHTML = 'Unread';
-  // } else {
-  //   status.classList.remove('unread');
-  //   status.classList.add('read');
-  //   status.innerHTML = 'Read';
-  // }
 }
 
 function addBook() {
   // get book info
-  const titleInput = document.querySelector('#title-input').value;
-  const authorInput = document.querySelector('#author-input').value;
-  const pagesInput = document.querySelector('#pages-input').value;
+  const titleInput = document.querySelector('#title-input');
+  const authorInput = document.querySelector('#author-input');
+  const pagesInput = document.querySelector('#pages-input');
   // add book to library
-  const newBook = new Book(titleInput, authorInput, pagesInput);
+  const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value);
   myLibrary[myLibrary.length] = newBook;
+  // clear inputs
+  titleInput.value = '';
+  authorInput.value = '';
+  pagesInput.value = '';
   // set up queries
   const library = document.querySelector('.library-container');
   const addBookBtn = document.querySelector('.add-book');
@@ -78,48 +69,59 @@ function addBook() {
   // insert card
   library.insertBefore(card, addBookBtn);
   card.classList.add('library-card');
+  card.setAttribute('id', `${newBook.title}`);
   // insert img child
   const img = document.createElement('img');
   card.appendChild(img);
   img.classList.add('book-img');
   img.setAttribute('src', './images/book-open-variant.svg');
   img.setAttribute('alt', 'open book graphic');
+  // insert book-infor child container
+  const info = document.createElement('div');
+  card.appendChild(info);
+  info.classList.add('book-info');
   // insert title child
-  const title = document.createElement('div');
-  card.appendChild(title);
-  title.classList.add('title');
-  title.textContent = `${newBook.title} by ${newBook.author}`;
+  const titleDiv = document.createElement('div');
+  info.appendChild(titleDiv);
+  titleDiv.classList.add('title');
+  titleDiv.textContent = `${newBook.title}`;
+  // insert author child
+  const authorDiv = document.createElement('div');
+  info.appendChild(authorDiv);
+  authorDiv.classList.add('author');
+  authorDiv.textContent = `By ${newBook.author}`;
   // insert pages child
-  const pages = document.createElement('div');
-  card.appendChild(pages);
-  pages.classList.add('pages');
-  pages.textContent = `${newBook.pages} pages`;
+  const pagesDiv = document.createElement('div');
+  card.appendChild(pagesDiv);
+  pagesDiv.classList.add('pages');
+  pagesDiv.textContent = `${newBook.pages} pages`;
   // insert buttons child container
   const btns = document.createElement('div');
   card.appendChild(btns);
   btns.classList.add('card-buttons');
-  // read button
+  // add read button
   const readBtn = document.createElement('button');
   btns.appendChild(readBtn);
   readBtn.classList.add('unread');
   readBtn.setAttribute('id', 'status-btn');
   readBtn.setAttribute('onclick', 'setStatus(this)');
   readBtn.textContent = 'Unread';
-  // remove button
+  // add remove button
   const removeBtn = document.createElement('button');
   btns.appendChild(removeBtn);
   removeBtn.classList.add('remove');
-  removeBtn.setAttribute('onclick', 'remove()');
+  removeBtn.setAttribute('onclick', 'remove(this)');
   removeBtn.textContent = 'Remove';
 }
 
-function remove() {
+function remove(element) {
+  // find the book id
+  const id = element.parentNode.parentNode.getAttribute('id');
+  console.log(id);
   // remove book from library array
-
+  const idIndex = myLibrary.map(e => e.title).indexOf(id);
+  console.log(idIndex);
+  myLibrary.splice(idIndex, 1);
   // remove from html
+  element.parentNode.parentNode.parentNode.removeChild(element.parentNode.parentNode);
 }
-
-// test books
-const bookOne = new Book('On the Road', 'Jack Kerouac', 208, true);
-const bookTwo = new Book('The Name of the Wind', 'Patrick Rothfuss', 458, true);
-
