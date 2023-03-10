@@ -5,7 +5,7 @@
 :root {
   font-size: 24px;
   --font-family: 'Asap', sans-serif;
-  --bg-color: rgb(192, 192, 192);
+  --bg-color: rgb(196, 196, 196);
   --ctrst-color: rgb(221, 219, 216);
   --alt-bg-color: rgb(155, 117, 117);
   --hover-bg: rgb(71, 43, 43);
@@ -73,6 +73,11 @@
 
 .modal {
   justify-content: space-around;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 16px;
 }
 
 .book-input-wrapper {

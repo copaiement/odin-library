@@ -38,17 +38,29 @@ function submit(event) {
 }
 
 // These change only the first button. Figure this out.
-function setStatus() {
-  const status = document.querySelector('#status-btn');
-  if (status.getAttribute('class') === 'read') {
-    status.classList.remove('read');
-    status.classList.add('unread');
-    status.innerHTML = 'Unread';
+function setStatus(element) {
+  console.log(element);
+  
+  if (element.getAttribute('class') === 'read') {
+    element.classList.remove('read');
+    element.classList.add('unread');
+    element.innerHTML = 'Unread';
   } else {
-    status.classList.remove('unread');
-    status.classList.add('read');
-    status.innerHTML = 'Read';
+    element.classList.remove('unread');
+    element.classList.add('read');
+    element.innerHTML = 'Read';
   }
+
+  // const status = document.querySelector('#status-btn');
+  // if (status.getAttribute('class') === 'read') {
+  //   status.classList.remove('read');
+  //   status.classList.add('unread');
+  //   status.innerHTML = 'Unread';
+  // } else {
+  //   status.classList.remove('unread');
+  //   status.classList.add('read');
+  //   status.innerHTML = 'Read';
+  // }
 }
 
 function addBook() {
@@ -91,7 +103,7 @@ function addBook() {
   btns.appendChild(readBtn);
   readBtn.classList.add('unread');
   readBtn.setAttribute('id', 'status-btn');
-  readBtn.setAttribute('onclick', 'setStatus()');
+  readBtn.setAttribute('onclick', 'setStatus(this)');
   readBtn.textContent = 'Unread';
   // remove button
   const removeBtn = document.createElement('button');
