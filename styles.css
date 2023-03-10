@@ -100,7 +100,7 @@
   font-size: .75rem;
 }
 
-#book-img {
+.book-img {
   height: 32px;
   fill: var(--text-color);
 }
