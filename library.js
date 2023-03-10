@@ -37,15 +37,7 @@ function submit(event) {
   }
 }
 
-function getBookInfo() {
-  const title = document.querySelector('#title-input').value;
-  const author = document.querySelector('#author-input').value;
-  const pages = document.querySelector('#pages-input').value;
-
-  const newBook = new Book(title, author, pages);
-  myLibrary[myLibrary.length] = newBook;
-}
-
+// These change only the first button. Figure this out.
 function setStatus() {
   const status = document.querySelector('#status-btn');
   if (status.getAttribute('class') === 'read') {
