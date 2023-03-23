@@ -8,13 +8,22 @@ document.querySelector('#submit-btn').addEventListener('click', submit);
 
 let myLibrary = [];
 
+// update book Constructor to a class
+class Book {
+  constructor(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+  }
+}
+
 // Constructor for making book objects
 
-function Book(title, author, pages) {
-  this.title = title,
-  this.author = author,
-  this.pages = pages
-}
+// function Book(title, author, pages) {
+//   this.title = title,
+//   this.author = author,
+//   this.pages = pages
+// }
 
 function openModal() {
   document.querySelector('.add-book').classList.add('hidden');
@@ -117,10 +126,8 @@ function addBook() {
 function remove(element) {
   // find the book id
   const id = element.parentNode.parentNode.getAttribute('id');
-  console.log(id);
   // remove book from library array
   const idIndex = myLibrary.map(e => e.title).indexOf(id);
-  console.log(idIndex);
   myLibrary.splice(idIndex, 1);
   // remove from html
   element.parentNode.parentNode.parentNode.removeChild(element.parentNode.parentNode);
